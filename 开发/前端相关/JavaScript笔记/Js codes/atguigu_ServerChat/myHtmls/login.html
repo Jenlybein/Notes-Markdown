@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="login_signup.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required autocomplete="off">
+            <input type="password" id="password" placeholder="Password" required autocomplete="off">
+            <div class="error-message" id="error-message">Error: Invalid username or password.</div>
+            <button type="submit">Login</button>
+        </form>
+        <div class="signup-link">
+            Don't have an account? <a href="register.html">Sign up</a>
+        </div>
+    </div>
+</body>
+<script src="login.js" window.onload></script>
+</html>

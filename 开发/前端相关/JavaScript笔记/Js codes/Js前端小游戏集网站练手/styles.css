@@ -1,0 +1,36 @@
+@charset "utf-8";
+@import "css_style/circleBackGround.css";
+@import "css_style/switch_style.css";
+@import "css_style/menu_style.css";
+
+body,
+html {
+	height: 100vh;
+	margin: 0;
+    flex-direction: column;
+	display: flex;
+
+	justify-content: center;
+	align-items: center;
+
+	background-color: #3d3939;
+	overflow: hidden;
+	/* 防止滚动条出现 */
+}
+
+.full_screen{
+    width: 98%;
+    height: 98%;
+}
+.lcd_screen{
+    width: 100%;
+    height: 100%;
+}
+
+.dis{
+	display: flex;
+}
+
+.disNo{
+	display: none;
+}

@@ -1,0 +1,112 @@
+
+.circle_begin {
+	position: absolute;
+
+	display: none;
+
+	width: 40em;
+	height: 40em;
+	left: 50%;
+	bottom: 50%;
+
+	border: 5px solid #333;
+	/* 添加边框 */
+	border-radius: 50%;
+	user-select: none;
+	/* 禁止选择文本 */
+
+	transform: translate(-50%, 50%);
+
+	background: linear-gradient(135deg, #353131, #920000, #4845ff, #353131);
+	background-attachment: fixed;
+	background-size: 200% 400%;
+
+	animation: moveCircleIn 1.5s ease-in-out 1 forwards, background_gradient 10s ease-out infinite;
+
+	transition: all 1s ease;
+	/* 过渡效果 */
+}
+
+.full-screen {
+	border-radius: 2%;
+	width: 98%;
+	height: 98%;
+	bottom: 50%;
+}
+
+@keyframes moveCircleIn {
+	0% {
+		width: 5em;
+		height: 5em;
+		bottom: -10em;
+	}
+
+	100% {
+		width: 40em;
+		height: 40em;
+		bottom: 50%;
+	}
+}
+@keyframes background_gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.circle_text {
+	position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+
+	display: none;
+	animation: enterenter 0.5s ease-out both;
+	text-align: center;
+	flex-direction: column;
+	margin: 0;
+	font-family: 'STXihei';
+	font-weight: bold;
+	user-select: none;
+	pointer-events: none;
+}
+
+@keyframes enterenter {
+	0% {
+		/* 加上文字间距 */
+		letter-spacing: 1em;
+		/* Z轴变换 */
+		transform: translate(-50%, -50%) translateZ(300px) scale(0.1,0.1);
+		/* filter: blur(); 像素模糊效果 */
+		filter: blur(12px);
+		/* 透明度也要改变 */
+		opacity: 0;
+	}
+	100% {
+		letter-spacing: 0em;
+		transform: translate(-50%, -50%) translateZ(12px) scale(1.0,1.0);
+		filter: blur(0);
+		opacity: 1;
+	}
+}
+
+@keyframes vanishOut {
+	0% {
+		opacity: 1;
+		transform: scale(1, 1) translate(-50%, -50%);
+		-webkit-filter: blur(0px);
+	}
+
+	100% {
+		opacity: 0;
+		transform: scale(2, 2) translate(-50%, -50%);
+		-webkit-filter: blur(100px);
+	}
+}

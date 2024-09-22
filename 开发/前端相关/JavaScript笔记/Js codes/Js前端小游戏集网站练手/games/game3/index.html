@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>背包问题游戏</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 600px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        .item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .item input {
+            width: 45%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .buttons button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .buttons button:hover {
+            background-color: #0056b3;
+        }
+        .buttons button:active {
+            background-color: #004494;
+        }
+        .section {
+            margin-top: 20px;
+        }
+        .section div {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .user-input {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .user-input input {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 80px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>背包问题游戏</h1>
+    <div id="items">
+        <div class="item">
+            <input type="number" placeholder="重量" class="weight">
+            <input type="number" placeholder="价值" class="value">
+        </div>
+    </div>
+    <button onclick="addItem()">添加物品</button>
+    <div class="item">
+        <input type="number" id="capacity" placeholder="背包承重">
+    </div>
+    <div class="buttons">
+        <button onclick="solveKnapsack()">计算最优解</button>
+    </div>
+    <div class="section">
+        <h2>当前游戏局面</h2>
+        <div id="currentStatus"></div>
+    </div>
+    <div class="section">
+        <h2>用户选择的物品</h2>
+        <div id="userSolution"></div>
+        <div class="user-input">
+            <input type="text" id="userItems" placeholder="输入物品编号 (例如: 0,1,2)">
+            <button onclick="checkUserSolution()">检查答案</button>
+        </div>
+    </div>
+    <div class="section">
+        <h2>最优解</h2>
+        <div id="optimalSolution"></div>
+    </div>
+</div>
+
+<script>
+    let weights = [];
+    let values = [];
+    let capacity = 0;
+    let optimalItems = [];
+    let optimalValue = 0;
+
+    function addItem() {
+        const itemsDiv = document.getElementById('items');
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('item');
+        itemDiv.innerHTML = '<input type="number" placeholder="重量" class="weight"><input type="number" placeholder="价值" class="value">';
+        itemsDiv.appendChild(itemDiv);
+    }
+
+    function solveKnapsack() {
+        weights = Array.from(document.getElementsByClassName('weight')).map(input => parseInt(input.value));
+        values = Array.from(document.getElementsByClassName('value')).map(input => parseInt(input.value));
+        capacity = parseInt(document.getElementById('capacity').value);
+
+        const n = weights.length;
+        const dp = Array.from({length: n + 1}, () => Array(capacity + 1).fill(0));
+
+        for (let i = 1; i <= n; i++) {
+            for (let w = 1; w <= capacity; w++) {
+                if (weights[i - 1] <= w) {
+                    dp[i][w] = Math.max(dp[i - 1][w], dp[i - 1][w - weights[i - 1]] + values[i - 1]);
+                } else {
+                    dp[i][w] = dp[i - 1][w];
+                }
+            }
+        }
+
+        let result = dp[n][capacity];
+        let w = capacity;
+        optimalItems = [];
+        for (let i = n; i > 0 && result > 0; i--) {
+            if (result !== dp[i - 1][w]) {
+                optimalItems.push(i - 1);
+                result -= values[i - 1];
+                w -= weights[i - 1];
+            }
+        }
+
+        optimalValue = dp[n][capacity];
+
+        document.getElementById('currentStatus').innerHTML = `物品: ${JSON.stringify(weights.map((w, i) => ({编号: i, 重量: w, 价值: values[i]})))}<br>背包承重: ${capacity}`;
+        document.getElementById('optimalSolution').innerHTML = `选中的物品编号: ${optimalItems}<br>最大价值: ${optimalValue}`;
+    }
+
+    function checkUserSolution() {
+        solveKnapsack(); // 确保最优解已经计算
+        const userItems = document.getElementById('userItems').value.split(',').map(Number);
+        let totalWeight = 0;
+        let totalValue = 0;
+
+        for (const item of userItems) {
+            totalWeight += weights[item];
+            totalValue += values[item];
+        }
+
+        const userSolutionCorrect = totalWeight <= capacity && totalValue === optimalValue;
+
+        if (userSolutionCorrect) {
+            document.getElementById('userSolution').innerHTML = `<div style="color: green;">正确! 总重量: ${totalWeight}, 总价值: ${totalValue}</div>`;
+        } else {
+            document.getElementById('userSolution').innerHTML = `<div style="color: red;">错误! 总重量: ${totalWeight}, 总价值: ${totalValue}</div>`;
+        }
+    }
+</script>
+
+</body>
+</html>

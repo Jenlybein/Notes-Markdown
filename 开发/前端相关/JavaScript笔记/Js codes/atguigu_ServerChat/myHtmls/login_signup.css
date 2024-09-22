@@ -1,0 +1,245 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.login-container,
+.register-container,
+.chat-container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.login-container h1,
+.register-container h1,
+.chat-container h1 {
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    color: #333;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"],
+.register-container input[type="text"],
+.register-container input[type="email"],
+.register-container input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.login-container button,
+.register-container button,
+.chat-container button {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 10px;
+    background: #6a11cb;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.login-container button:hover,
+.register-container button:hover,
+.chat-container button:hover {
+    background: #2575fc;
+}
+
+.login-container .signup-link,
+.register-container .login-link {
+    margin-top: 1rem;
+    display: block;
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.login-container .signup-link a,
+.register-container .login-link a {
+    color: #6a11cb;
+    text-decoration: none;
+}
+
+.login-container .signup-link a:hover,
+.register-container .login-link a:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.875rem;
+    display: none;
+}
+
+/* Chat page styles */
+.chat-container {
+    display: flex;
+    height: 80%;
+    max-width: 80%;
+    border-radius: 15px;
+    overflow: hidden;
+    padding: 0;
+}
+
+.sidebar {
+    width: 25%;
+    padding: 1rem;
+    background: #f7f7f7;
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+}
+
+.user-info {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.user-info h2 {
+    margin: 0;
+    color: #333;
+}
+
+.user-info button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background: #6a11cb;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.user-info button:hover {
+    background: #2575fc;
+}
+
+.friends-list, .groups-list {
+    margin-bottom: 1rem;
+}
+
+.friends-list h3, .groups-list h3 {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.friends-list ul, .groups-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.friends-list li, .groups-list li {
+    padding: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.friends-list li:hover, .groups-list li:hover {
+    background: #ddd;
+}
+
+.friends-list li {
+    color: black;
+}
+
+.friends-list li.online {
+    color: green;
+}
+
+.chat-window {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.chat-header h2 {
+    margin: 0;
+    color: #333;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    background: #f0f0f0;
+}
+
+.chat-input {
+    display: flex;
+    border-top: 1px solid #ddd;
+    padding: 0.5rem;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
+
+.chat-input button {
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 10px;
+    background: #6a11cb;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.chat-input button:hover {
+    background: #2575fc;
+}
+
+/* Chat message bubble styles */
+.message {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+.friend {
+    text-align: left;
+    background-color: #2575fc;
+    color: #fff;
+    border-radius: 10px 10px 10px 10px;
+    margin-left: auto;
+}
+
+.user {
+    text-align: left;
+    background-color: #259bfc;
+    color: #fff;
+    border-radius: 10px 10px 10px 10px;
+    margin-left: auto;
+}
+
+.sender {
+    font-weight: bold;
+}

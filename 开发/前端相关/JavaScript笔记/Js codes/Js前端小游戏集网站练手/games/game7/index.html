@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网络流游戏</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .input-container {
+            margin-bottom: 10px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>网络流游戏</h1>
+        <button id="generate-question">生成新的题目</button>
+        <div id="question-container" class="question"></div>
+        <div id="answer-container"></div>
+        <button id="check-answer" style="display: none;">核验答案</button>
+        <button id="show-answer" style="display: none;">显示答案</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        let graph, source, sink;
+
+        document.getElementById('generate-question').addEventListener('click', generateQuestion);
+        document.getElementById('check-answer').addEventListener('click', checkAnswer);
+        document.getElementById('show-answer').addEventListener('click', showAnswer);
+
+        function generateQuestion() {
+            // 随机生成一个容量矩阵
+            const size = 6; // 节点数目
+            graph = Array.from({ length: size }, () => Array(size).fill(0));
+            
+            for (let i = 0; i < size; i++) {
+                for (let j = 0; j < size; j++) {
+                    if (i !== j) {
+                        graph[i][j] = Math.floor(Math.random() * 20); // 随机容量在0到20之间
+                    }
+                }
+            }
+
+            source = 0;
+            sink = size - 1;
+
+            let tableHTML = '<table><tr><th></th>';
+            for (let i = 0; i < graph.length; i++) {
+                tableHTML += `<th>${i}</th>`;
+            }
+            tableHTML += '</tr>';
+            for (let i = 0; i < graph.length; i++) {
+                tableHTML += `<tr><th>${i}</th>`;
+                for (let j = 0; j < graph[i].length; j++) {
+                    tableHTML += `<td>${graph[i][j]}</td>`;
+                }
+                tableHTML += '</tr>';
+            }
+            tableHTML += '</table>';
+
+            document.getElementById('question-container').innerHTML = `
+                <p>给定图的容量矩阵如下，请求出从节点 0 到节点 ${size - 1} 的最大流。</p>
+                ${tableHTML}
+            `;
+            document.getElementById('answer-container').innerHTML = `
+                <div class="input-container">
+                    <label for="user-answer">请输入你的答案：</label>
+                    <input type="number" id="user-answer">
+                </div>
+            `;
+            document.getElementById('check-answer').style.display = 'inline';
+            document.getElementById('show-answer').style.display = 'inline';
+            document.getElementById('result').innerHTML = '';
+        }
+
+        function checkAnswer() {
+            const userAnswer = parseInt(document.getElementById('user-answer').value);
+            const correctAnswer = fordFulkerson(graph, source, sink);
+            if (userAnswer === correctAnswer) {
+                document.getElementById('result').innerHTML = '<p style="color: green;">正确！</p>';
+            } else {
+                document.getElementById('result').innerHTML = `<p style="color: red;">错误，请再次尝试。</p>`;
+            }
+        }
+
+        function showAnswer() {
+            const correctAnswer = fordFulkerson(graph, source, sink);
+            document.getElementById('result').innerHTML = `<p>正确答案是 ${correctAnswer}。</p>`;
+        }
+
+        // Ford-Fulkerson 算法实现
+        function fordFulkerson(graph, source, sink) {
+            const residualGraph = JSON.parse(JSON.stringify(graph));
+            const parent = [];
+            let maxFlow = 0;
+
+            while (bfs(residualGraph, source, sink, parent)) {
+                let pathFlow = Infinity;
+                for (let v = sink; v !== source; v = parent[v]) {
+                    const u = parent[v];
+                    pathFlow = Math.min(pathFlow, residualGraph[u][v]);
+                }
+
+                for (let v = sink; v !== source; v = parent[v]) {
+                    const u = parent[v];
+                    residualGraph[u][v] -= pathFlow;
+                    residualGraph[v][u] += pathFlow;
+                }
+
+                maxFlow += pathFlow;
+            }
+
+            return maxFlow;
+        }
+
+        function bfs(residualGraph, source, sink, parent) {
+            const visited = new Array(residualGraph.length).fill(false);
+            const queue = [];
+            queue.push(source);
+            visited[source] = true;
+            parent[source] = -1;
+
+            while (queue.length !== 0) {
+                const u = queue.shift();
+
+                for (let v = 0; v < residualGraph.length; v++) {
+                    if (visited[v] === false && residualGraph[u][v] > 0) {
+                        if (v === sink) {
+                            parent[v] = u;
+                            return true;
+                        }
+                        queue.push(v);
+                        parent[v] = u;
+                        visited[v] = true;
+                    }
+                }
+            }
+
+            return false;
+        }
+    </script>
+</body>
+</html>

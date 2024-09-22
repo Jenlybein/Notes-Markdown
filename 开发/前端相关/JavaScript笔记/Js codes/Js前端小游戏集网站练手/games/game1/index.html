@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>迷宫游戏</title>
+    <style>
+        body{
+            text-align: center;
+            overflow: hidden;
+        }
+        #maze {
+            margin: 0 auto;
+            margin-top: 0px;
+        }
+        #maze #player {
+            position:absolute;
+            border-radius: 50%;
+            background-color: green;
+            transition: all 0.2s ease;
+        }
+        #maze table {
+            margin: 0 auto;
+            border: none;
+        }
+        #maze span {
+            font-family: "Bodoni MT";
+            font-size: 20px;
+            font-weight: 700;
+            color: brown;
+        }
+        #maze td {
+            text-align: center;
+            color: white;
+            border: none;
+        }
+        .startNode {
+            background-color: aqua;
+            border-radius: 10%;
+        }
+        .endNode {
+            background-color: red;
+            border-radius: 10%;
+        }
+        .wall {
+            background-color: #777;
+            border-radius: 10%;
+        }
+        .path{
+            background-color: rgb(230, 195, 0);
+            border-radius: 10%;
+        }
+    </style>
+</head>
+<body>
+
+<div id="maze">
+    <span>—— Maze Game ——</span>
+    <table id="mazeTable">
+        <span id="player"></span>
+    </table>
+</div>
+
+<button onclick="resetMaze();">新的迷宫</button>
+<button onclick="showPath();">正确路线</button>
+<input type="number" id="inputSize" placeholder="迷宫规格 min:4 max:80">
+
+<script src="getMazeArr.js"></script>
+<script src="drawMaze.js"></script>
+<script src="MazeControl.js"></script>
+<script src="getAns.js"></script>
+<script>
+    setTimeout(function() {
+        resetMaze();
+    },1000);
+</script>
+</body>
+</html>

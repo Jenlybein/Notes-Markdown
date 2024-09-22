@@ -1,0 +1,10 @@
+com\itheima\Application.class
+com\itheima\pojo\User.class
+com\itheima\ws\ChatEndpoint.class
+com\itheima\pojo\ResultMessage.class
+com\itheima\controller\UserController.class
+com\itheima\pojo\Message.class
+com\itheima\pojo\Result.class
+com\itheima\utils\MessageUtils.class
+com\itheima\config\WebsocketConfig.class
+com\itheima\config\GetHttpSessionConfigurator.class

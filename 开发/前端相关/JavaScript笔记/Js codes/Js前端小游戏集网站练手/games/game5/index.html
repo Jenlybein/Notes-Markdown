@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>最大子序列和问题</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>最大子序列和问题</h1>
+        <div class="game">
+            <label for="inputNumbers">输入一系列的数字：</label>
+            <input type="text" id="inputNumbers" placeholder="输入数字，以逗号分隔">
+            <button onclick="findMaxSubsequence()">查找最大子序列和</button>
+            <div id="gameStatus">
+                <!-- 这里将动态显示当前的游戏局面 -->
+            </div>
+            <div id="resultArea">
+                <!-- 这里将显示找到的最大子序列和 -->
+            </div>
+            <button onclick="generateRandomNumbers()">生成随机数字序列</button>
+            
+            <div class="answer">
+                <h3>输入你的答案：</h3>
+                <label for="inputMaxSum">最大子序列和：</label>
+                <input type="text" id="inputMaxSum" placeholder="输入最大子序列和">
+                <label for="inputSubsequence">子序列：</label>
+                <input type="text" id="inputSubsequence" placeholder="输入子序列，以逗号分隔">
+                <button onclick="checkAnswer()">判断答案</button>
+                <p id="answerStatus"></p>
+            </div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>

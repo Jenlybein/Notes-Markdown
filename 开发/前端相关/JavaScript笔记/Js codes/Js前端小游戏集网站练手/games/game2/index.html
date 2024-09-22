@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chessboard</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: gray;
+        }
+
+        .chessboard {
+            width: 320px;
+            height: 320px;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+            border: thick double #3e3e3e;
+            position: absolute;
+            top: 10%;
+            border-radius: 5%;
+            overflow: hidden;
+        }
+
+        .brown {
+            background-color: rgb(150, 115, 2);
+        }
+
+        .lightbrown {
+            background-color: rgb(241, 225, 173);
+        }
+
+        .cell {
+            width: 40px;
+            height: 40px;
+        }
+
+        .cell:hover {
+            background-color: rgb(164, 226, 64);
+            transition: all 0.25s;
+            cursor: pointer;
+        }
+
+        .cell.icon {
+            background-image: url('./icon.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .buttons .button {
+            color: #fff;
+            padding: 14px 40px;
+            background: linear-gradient(90deg, #025ce3, #4e94fd);
+            border-radius: 45px;
+            margin: 0 15px;
+            font-size: 20px;
+            font-weight: 400;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            top: 55%;
+        }
+
+        .buttons .button .overlay {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: blink 0.1s linear infinite;
+        }
+
+        @keyframes blink {
+            0% {
+                height: 0px;
+                width: 0px;
+                opacity: 0.5;
+            }
+
+            100% {
+                height: 400px;
+                width: 400px;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chessboard"></div>
+    <div class="buttons">
+        <a class="button one" href="#">显示答案
+            <!-- <span class="overlay" ></span> -->
+        </a>
+        <a class="button two" href="#">核验答案
+            <!-- <span class="overlay"></span> -->
+        </a>
+        <a class="button tree" href="#">新的题目
+            <!-- <span class="overlay"></span> -->
+        </a>
+
+    </div>
+
+    <script src="queen.js"></script>
+</body>
+
+</html>

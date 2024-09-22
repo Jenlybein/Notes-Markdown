@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Page</title>
+    <link rel="stylesheet" href="login_signup.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="sidebar">
+            <div class="user-info">
+                <h2 id="username">User Name</h2>
+                <button id="logoutButton">Logout</button>
+            </div>
+            <div class="friends-list">
+                <h3>Friends</h3>
+                <ul id="friends">
+                    <!-- Friend items will be added here dynamically -->
+                </ul>
+            </div>
+            <div class="groups-list">
+                <h3>Groups</h3>
+                <ul id="groups">
+                    <!-- Group items will be added here dynamically -->
+                </ul>
+            </div>
+        </div>
+        <div class="chat-window">
+            <div class="chat-header">
+                <h2 id="chatWith">Select a friend or group to chat</h2>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <!-- Chat messages will be added here dynamically -->
+            </div>
+            <div class="chat-input">
+                <input type="text" id="messageInput" placeholder="Type a message" />
+                <button id="sendButton">Send</button>
+            </div>
+        </div>
+    </div>
+    <script src="chat2.js"></script>
+</body>
+</html>
