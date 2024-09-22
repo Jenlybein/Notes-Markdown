@@ -1,0 +1,1 @@
+[【快速入门】python极速版-个人笔记](https://blog.csdn.net/Jenlibein/article/details/133973781)
