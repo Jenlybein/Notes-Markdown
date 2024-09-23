@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Java_Tomcat.iml" filepath="$PROJECT_DIR$/.idea/Java_Tomcat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo02-servlet/demo02-servlet.iml" filepath="$PROJECT_DIR$/demo02-servlet/demo02-servlet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo03-Dispatch-redirect/demo03-Dispatch-redirect.iml" filepath="$PROJECT_DIR$/demo03-Dispatch-redirect/demo03-Dispatch-redirect.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo04-cookie-session/demo04-cookie-session.iml" filepath="$PROJECT_DIR$/demo04-cookie-session/demo04-cookie-session.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo05-Domain/demo05-Domain.iml" filepath="$PROJECT_DIR$/demo05-Domain/demo05-Domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo06-filter/demo06-filter.iml" filepath="$PROJECT_DIR$/demo06-filter/demo06-filter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo07-listener/demo07-listener.iml" filepath="$PROJECT_DIR$/demo07-listener/demo07-listener.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo08-ajax/demo08-ajax.iml" filepath="$PROJECT_DIR$/demo08-ajax/demo08-ajax.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo1-web01/demo1-web01.iml" filepath="$PROJECT_DIR$/demo1-web01/demo1-web01.iml" />
+    </modules>
+  </component>
+</project>

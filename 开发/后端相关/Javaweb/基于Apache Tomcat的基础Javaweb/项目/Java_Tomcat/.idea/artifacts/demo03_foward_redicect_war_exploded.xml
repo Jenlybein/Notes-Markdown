@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="demo03-foward-redicect:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/demo03_foward_redicect_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="demo03-foward-redicect/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="demo03-Dispatch-redirect" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
