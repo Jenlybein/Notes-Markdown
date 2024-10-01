@@ -1,0 +1,45 @@
+crontab -e
+0 2 * * * /root/scripts/daily_archive.sh /root/scripts (每天两点对/root/scripts进行归档）
+(多少分) (多少点) (月的第几天) (第几个月) (星期几)
+####以下内容写完后在终端打上以上内容
+####以下内容命名为/root/scripts/daily_archive.sh
+
+#从参数中获取目录名称  (-d 文件存在并且是一个目录）
+if [ -d $1 ]
+then
+	echo
+else
+	echo "目录不存在！"
+	exit
+fi
+
+#获取目录名称
+DIR_NAME = $(basename $1) 
+#获取目录路径（先来到目录的位置，再显示绝对路径）dirname命令去除文件名中的非目录部分
+DIR_PATH = $(cd $(dirname $1); pwd) 
+
+DATE = $(date +%y%m%d) #获取当前日期
+
+
+#定义生成的归档文件名称
+FILE = archive_${DIR_NAME}_$DATE.tar.gz
+DEST = /root/archive/$FILE
+
+#开始归档目录文件
+
+echo  “开始归档..."
+
+tar -czf  $DEST  $DIR_PATH/$DIR_NAME
+
+
+# $?不是0则上一条命令运行失败
+if[ $? -eq 0 ]
+then 
+	echo
+	echo "归档成功，文件位：$DEST"
+	echo
+else
+	echo "归档出现问题"
+fi
+
+exit

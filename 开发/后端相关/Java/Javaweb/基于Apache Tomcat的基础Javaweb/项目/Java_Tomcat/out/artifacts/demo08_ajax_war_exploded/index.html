@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        function getMessage(){
+            // 实例化一个xmlHttpRequest对象的回调函数
+            let request = new XMLHttpRequest();
+
+            // 设置xmlHttpRequest对象的回调函数
+            // request.readState 四个状态 1 2 3 4
+            // request.status 响应状态，响应状态码
+            request.onreadystatechange=function (){
+                // 接收响应结果，处理结果
+                if(request.readyState===4 && request.status === 200){
+                    let myDiv = document.getElementById("sayHello");
+                    myDiv.innerHTML=request.responseText;
+
+                }
+            }
+
+            // 获取input框的值
+            let inputValue = document.getElementById("myInput").value;
+
+            // 设置请求方式和路径
+            request.open("GET","/hello?username="+inputValue);
+
+            // 发送请求
+            request.send();
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="myInput" placeholder="请输入你的用户名">
+    <button onclick="getMessage()">Ajax测试按钮(跟你说Hello）</button>
+    <div id="sayHello"></div>
+</body>
+</html>

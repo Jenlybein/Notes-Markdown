@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Context>
-    <!-- 配置 PersistentManager 来管理会话持久化 -->
-    <Manager className="org.apache.catalina.session.PersistentManager" maxIdleSwap="1">
-        <!-- 配置 FileStore 来保存会话信息到文件系统 -->
-        <Store className="org.apache.catalina.session.FileStore" directory="d:/mysession" />
-    </Manager>
-</Context>

@@ -1,0 +1,65 @@
+html,body {
+    caret-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(#6a11cb, #6a11cb, #2575fc);
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+.container form{
+    display: flex;
+    flex-direction: column;
+}
+.container .ht{
+    text-align: center;
+    color: rgb(28, 162, 167);
+    font-family: 幼圆;
+}
+
+.container input[type="text"],
+.container input[type="password"]
+{
+    caret-color: auto;
+    width: 90%;
+    height: 20%;
+    padding: 0.5rem;
+    margin: auto;
+    border: 2px solid #6d6d6d;
+    border-radius: 10px;
+    font-size: 1rem;
+    white-space:nowarp;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.btn1{
+    border: 2px solid rgb(119, 119, 119);
+    border-radius: 5px;
+    width:60px;
+    background-color: antiquewhite;
+    font-size: 0.8rem;
+    font-family: 微软雅黑;
+}
+
+#usernameMsg , #userPwdMsg , #wrongPwdOrName{
+    color: rgb(230, 87, 51);
+    padding: 0rem auto;
+    margin-left: 0rem;
+    font-size: 0.8rem;
+}
+
+.buttonContainer{
+    text-align: center;
+}
